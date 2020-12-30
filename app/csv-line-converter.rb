@@ -17,7 +17,7 @@ class CsvLineConverter
         fields_name.push(field_name)
       end
     end
-    return fields_name.join(',')
+    fields_name.join(',')
   end
 
   def get_csv_data
@@ -32,7 +32,7 @@ class CsvLineConverter
         fields_data.push(field_content)
       end
     end
-    return fields_data.join(',')
+    fields_data.join(',')
   end
 
   def flatten_hash(hash)

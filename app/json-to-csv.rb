@@ -3,14 +3,14 @@ require_relative 'csv-line-converter'
 require_relative 'file-writer'
 
 def display_help
-  puts ('Usage :')
-  puts ('ruby json-to-csv.rb /path/to/input/json/file.json /path/to/output/csv/file.csv')
+  puts 'Usage :'
+  puts 'ruby json-to-csv.rb input_file.json output_file.csv'
 end
 
 arguments_list = ARGV
 if arguments_list.length != 2
   puts 'No argument specified'
-  display_help()
+  display_help
 else
   input_path = arguments_list[0]
   output_path = arguments_list[1]
@@ -18,7 +18,7 @@ else
 
   puts "Reading input JSON file #{input_path}"
   begin
-    input_file = File.open(input_path,"r")
+    input_file = File.open(input_path,'r')
   rescue
     puts "Input JSON file doesn't exist !"
     json_file_exists = false
@@ -26,7 +26,7 @@ else
 
   if json_file_exists
     parsed_content = JsonParser.new(input_file.read()).parsed_content
-    puts "Content parsed successfully"
+    puts 'Content parsed successfully'
 
     first_line = parsed_content[0]
     header_csv = CsvLineConverter.new(first_line).get_csv_header
@@ -39,7 +39,7 @@ else
     end
     puts "Writing output CSV file #{output_path}"
 
-    input_file.close()
-    file_writer.close()
+    input_file.close
+    file_writer.close
   end
 end

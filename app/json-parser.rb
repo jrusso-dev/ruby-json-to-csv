@@ -6,18 +6,18 @@ class JsonParser
 
   def initialize(content)
     @content = content
-    check_content()
-    parse_content()
-    check_parsed_content()
+    check_content
+    parse_content
+    check_parsed_content
   end
 
   def check_content()
-    if (@content == nil || @content.length == 0)
+    if @content.nil?|| @content.length.zero?
       raise(EmptyContentError)
     end
   end
 
-  def parse_content()
+  def parse_content
     begin
       @parsed_content = JSON.parse(@content)
     rescue
@@ -26,7 +26,7 @@ class JsonParser
   end
 
   def check_parsed_content()
-    if (@parsed_content.length == 0)
+    if @parsed_content.length.zero?
       raise(EmptyContentError)
     end
   end

@@ -7,11 +7,11 @@ class FileWriter
   end
 
   def write(content)
-    @file_handler.write(content + "\n")
+    @file_handler.write("#{content}\n")
   end
 
   def close
-    @file_handler.close()
+    @file_handler.close
   end
 
 end
