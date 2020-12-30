@@ -1,4 +1,4 @@
-require_relative 'errors/rs/custom-error'
+require_relative '../errors/custom-error'
 require 'json'
 
 class JsonParser
