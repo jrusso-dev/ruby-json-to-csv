@@ -1,6 +1,6 @@
-require_relative 'json-parser'
-require_relative 'csv-line-converter'
-require_relative 'file-writer'
+require_relative 'lib/json-parser'
+require_relative 'lib/csv-line-converter'
+require_relative 'lib/file-writer'
 
 def display_help
   puts 'Usage :'

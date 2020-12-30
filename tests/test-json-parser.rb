@@ -1,5 +1,5 @@
 require "test/unit"
-require_relative '../app/json-parser'
+require_relative '../app/lib/json-parser'
 require_relative '../app/errors/custom-error'
 
 class TestJsonParser < Test::Unit::TestCase
