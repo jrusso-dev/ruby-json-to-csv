@@ -7,44 +7,38 @@ class CsvLineConverter
 
   def get_csv_header
     fields_name = Array.new
-    @content.each do |field_name, field_content|
-      if field_content.is_a?(Hash)
-        flattened_hash = flatten_hash(field_content)
-        flattened_hash.each do |flattened_name, flattened_content|
-          fields_name.push("#{field_name}.#{flattened_name}")
-        end
-      else
-        fields_name.push(field_name)
-      end
+    flatten_hash(@content).each do |field_name, field_content|
+      fields_name.push(field_name)
     end
     fields_name.join(',')
   end
 
   def get_csv_data
     fields_data = Array.new
-    @content.each do |field_name, field_content|
-      if field_content.is_a?(Hash)
-        flattened_hash = flatten_hash(field_content)
-        flattened_hash.each do |flattened_name, flattened_content|
-          fields_data.push(flattened_content)
-        end
-      else
-        fields_data.push(field_content)
-      end
+    returned_data = Array.new
+    flatten_hash(@content).each do |field_name, field_content|
+      fields_data.push(format_content(field_content))
     end
     fields_data.join(',')
   end
 
   def flatten_hash(hash)
-    hash.each_with_object({}) do |(k, v), h|
-      if v.is_a? Hash
-        flatten_hash(v).map do |h_k, h_v|
-          h["#{k}.#{h_k}".to_sym] = h_v
+    hash.each_with_object({}) do |(key, value), hash_reference|
+      if value.is_a? Hash
+        flatten_hash(value).map do |child_key, child_value|
+          hash_reference["#{key}.#{child_key}".to_sym] = child_value
         end
       else
-        h[k] = v
+        hash_reference[key] = value
       end
     end
+  end
+
+  def format_content(content)
+    if content.is_a? Array
+      return "\"#{content.join(',')}\""
+    end
+    content
   end
 
 end

@@ -9,7 +9,6 @@ end
 
 arguments_list = ARGV
 if arguments_list.length != 2
-  puts 'No argument specified'
   display_help
 else
   input_path = arguments_list[0]
